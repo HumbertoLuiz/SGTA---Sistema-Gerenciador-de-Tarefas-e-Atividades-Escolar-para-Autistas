@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}" >
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="Content-Type" content="text/html"/>
+	
+	<title>Sistema Escolar - Lista de Usuários</title>
+</head>
+
+<body>
+		
+	<!-- Conteúdo -->
+	<div layout:fragment="content">
+	
+		<h3>Lista de Usuários</h3>
+		<table class="table table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Email</th>
+					<th scope="col">role</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="usuario : ${userList}">
+					<td th:text="${usuario.id}"></td>
+					<td th:href="@{/usuarios/edit/{id}(id=${usuario.id})}" th:text="${usuario.email}"></td>
+					<td  th:each="role: ${usuario.roles}" th:text="${role.nome}"></td>
+				 <td><a th:href="@{/usuarios/delete/{id}(id=${usuario.id})}">
+            <i class="bi bi-dash-circle" title="delete"></i>
+            </a>
+          </td>
+				</tr>
+			</tbody>
+		</table>
+	
+	</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}" >
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="Content-Type" content="text/html;"/>
+</head>
+
+<body>
+	<!-- Conteúdo -->
+	<div layout:fragment="content">
+	
+	<h3>Detalhe da Turma</h3>
+	
+		<div th:each="instituicao :${instituicao}" class="container">
+			<div class="row">
+				<div class="col-sm">
+					<p>Id: <span th:text="${instituicao.id}"></span> </p> 
+					<p>Nome: <span th:text="${instituicao.nome}"></span> </p>
+					<p>Sigla: <span th:text="${instituicao.sigla}"></span> </p>
+					<p>Diretor: <span th:text="${instituicao.diretor}"></span> </p>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+</body>
+</html>
