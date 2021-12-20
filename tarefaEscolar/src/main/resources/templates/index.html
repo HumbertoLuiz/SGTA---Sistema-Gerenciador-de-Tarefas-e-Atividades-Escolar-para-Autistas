@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<meta charset="utf-8">
+	<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+<div th:replace="head :: head"></div>
+<body>
+	<div th:replace="menu :: menu"></div>
+
+	<div class="banner-carousel">
+		<div class="banner-carousel-item"
+			style="background-image: url(/images/bg_main1.jpg)">
+			<div class="slider-content">
+				<div class="container h-100">
+					<div class="row align-items-center h-100">
+						<div class="col-md-12 text-center">
+							<h2 class="slide-title">Acreditamos na sua capacidade</h2>
+							<h3 class="slide-sub-title">Construa seu sonho</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div th:replace="footer :: footer"></div>
+		
+	</div>
+
+</body>
+</html>

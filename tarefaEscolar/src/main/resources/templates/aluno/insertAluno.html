@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+<div th:replace="head :: head"></div>
+<meta charset="utf-8">
+<body>
+	<div th:replace="menu :: menu"></div>
+	<main class="container">
+		<div class="bg-light p-5 rounded">
+			<div class="card">
+				<div class="card-body">
+					<div th:switch="${aluno.id&gt;0}">
+						<p th:case="${true}">Atualização</p>
+						<p th:case="*"></p>
+						<h3>Cadastro de Aluno</h3>
+						<p></p>
+					</div>
+
+					<form th:object="${aluno}" th:action="@{/aluno/save/}"
+						method="POST" action="">
+						<input type="hidden" th:field="${aluno.id}" th:if="${aluno.id}" />
+
+						<div class="row">
+							<div class="col">
+								<label for="nome">Matricula:</label> <input type="text"
+								class="form-control" id="matricula"
+								placeholder="Entre com a matricula do aluno"
+								autofocus="autofocus" th:field="*{matricula}"
+								th:classappend="${#fields.hasErrors('matricula')} ? 'is-invalid'" />
+							</div>
+
+							<div class="col-8">
+								<label for="nome">Nome:</label> <input type="text"
+								class="form-control" id="nome"
+								placeholder="Entre com o nome completo do aluno"
+								autofocus="autofocus" th:field="*{nome}"
+								th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-4">
+								<label for="cpf">CPF:</label> <input type="text"
+								class="form-control" id="cpf"
+								placeholder="entre com o cpf do Aluno" autofocus="autofocus"
+								th:field="*{cpf}"
+								th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'" />
+							</div>
+
+							<div class="col-4">
+								<label for="nome">Telefone:</label> <input type="text"
+								class="form-control" id="celular" placeholder="celular"
+								autofocus="autofocus" th:field="*{telefone.celular}"
+								th:classappend="${#fields.hasErrors('telefone.celular')} ? 'is-invalid'" />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-4">
+								<label for="disciplina">Turma</label>
+								<select id="turma" class="form-control" th:field="*{turma}">
+								<option value="">Selecione</option>
+								<option th:each="d : ${turmas}" th:value="${d.id}"
+										th:text="${d.descricao}">Administração</option>
+								</select>
+							</div>
+						</div>
+						<br>
+						<h4>Dados do Responsavel</h4>
+						<div class="row">
+							<div class="col-8">
+								<label for="nome">Nome do Responsavel:</label> <input
+								type="text" class="form-control" id="nome"
+								placeholder="Entre com o nome do responsável "
+								autofocus="autofocus" th:field="*{responsavel.nome}"
+								th:classappend="${#fields.hasErrors('responsavel.nome')} ? 'is-invalid'" />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-4">
+								<label for="cpf">CPF do Responsavel:</label> <input type="text"
+									class="form-control" id="cpf"
+									placeholder="Entre com o cpf do responsável"
+									autofocus="autofocus" th:field="*{responsavel.cpf}"
+									th:classappend="${#fields.hasErrors('responsavel.cpf')} ? 'is-invalid'" />
+							</div>
+
+							<div class="col-4">
+								<label for="nome">Telefone:</label> <input type="text"
+								class="form-control" id="celular"
+								placeholder="Entre com o celular do responsável"
+								autofocus="autofocus"
+								th:field="*{responsavel.telefone.celular}"
+								th:classappend="${#fields.hasErrors('responsavel.telefone.celular')} ? 'is-invalid'" />
+							</div>
+						</div>
+
+						<input type="hidden" id="telefone.id" th:field="*{telefone.id}" />
+						<input type="hidden" id="responsavel.id" th:field="*{responsavel.id}" /> <br>
+
+						<div class="mb-3">
+							<p th:switch="${aluno.id&gt;0}">
+								<button type="submit" th:case="${true}" class="btn btn-danger"
+								th:text="Atualizar"></button>
+								<button type="submit" th:case="*" class="btn btn-primary"
+								th:text="Adicionar"></button>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div th:replace="footer :: footer"></div>
+</body>
+</html>

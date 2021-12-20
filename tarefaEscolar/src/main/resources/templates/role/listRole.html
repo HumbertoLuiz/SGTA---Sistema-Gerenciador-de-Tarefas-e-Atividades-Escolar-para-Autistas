@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+<div th:replace="head :: head"></div>
+<meta charset="utf-8">
+<body>
+	<div th:replace="menu :: menu"></div>
+	<main class="container">
+		<div class="bg-light p-5 rounded">
+			<div class="card">
+				<div class="card-body">
+
+					<h3>Lista de Permissões</h3>
+
+					<table class="table table-bordered table-hover">
+						<thead class="thead thead-bordered thead-light">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Permissão</th>
+								<th scope="col">#</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="role : ${rolList}">
+								<td th:text="${role.id}"></td>
+								<td><a th:href="@{/role/edit/{id}(id=${role.id})}"
+									th:text="${role.nome} "></a></td>
+								<td><a th:href="@{/role/delete/{id}(id=${role.id})}"
+									th:attr="aria-label= ${'Delete' + role.id}" class="role-link">Delete
+								</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div th:replace="footer :: footer"></div>
+</body>
+</html>

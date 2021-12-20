@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<meta charset="utf-8">
+	<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+<div th:replace="head :: head"></div>
+<body>
+	<div th:replace="menu :: menu"></div>
+	<main class="container">
+		<div class="bg-light p-5 rounded">
+			<div class="card">
+				<div class="card-body">
+				<h3>Lista de Responsáveis</h3>
+				<table class="table table-bordered table-hover">
+					<thead class="thead thead-bordered thead-light">
+					<tr>
+						<th>Id</th>
+						<th>Nome</th>
+						<th>Telefone</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr th:each="aluno : ${alunos}">
+					<td th:text="${aluno.id}"/>
+					<td th:text="${aluno.responsavel.nome} "></td>		
+					<td th:text="${aluno.responsavel.telefone.celular}"></td>
+                        
+						<td>
+							<div class="btn-group">
+								<a th:href="@{/aluno/edit1/{id}(id=${aluno.id})}"
+								class="btn btn-sm btn-warning bg-orange mr-2"
+								title="Edit User. Available to Users and Super Admins only."><i
+								class="fas fa-user-edit"></i></a>								
+							</div>
+						</td>				
+						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</div>
+		</div>
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+		<script th:src="@{/webjars/popper.js/umd/popper.min.js}" type="text/javascript"></script>
+		<script th:src="@{/js/scripts.js}" type="text/javascript"></script>
+	</main>
+
+	<div th:replace="footer :: footer"></div>
+
+</body>
+</html>

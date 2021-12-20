@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<meta charset="utf-8">
+<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+<div th:replace="head :: head"></div>
+<body>
+	<div th:replace="menu :: menu"></div>
+
+	<main class="container">
+		<div class="bg-light p-5 rounded">
+		
+
+			<div class="card" >
+
+				<div class="card-header">Cadastro
+					<a th:href="@{/}" class="btn btn-sm btn-primary float-right mr-3">Search</a>
+					<a th:href="@{/turma/list}" class="btn btn-sm btn-primary float-right mr-3">List</a>
+				</div>
+				
+				<form th:object="${turma}" th:action="@{/turma/save/}" method="POST">
+		  		<input type="hidden" th:field="${turma.id}" th:if="${turma.id}" />
+		
+			<div class="form-group">
+			 <div class="col-sm-6">
+			 <h5>Cadastro de Curso</h5>
+				<label for="nome">Descrição </label>
+				   <input type="text" class="form-control" id="descricao" placeholder="Descrição"
+							autofocus="autofocus" th:field="*{curso.descricao}"
+							th:classappend="${#fields.hasErrors('curso.descricao')} ? 'is-invalid'" />
+			</div>
+			</div>	
+			
+			<div class="form-group-row">
+   			 	<div class="form-group col-md-6">
+   			 		<h5>Cadastro de Turma</h5>	
+					<label for="nome">Descrição </label>
+				    <input type="text" class="form-control" id="descricao" placeholder="Descrição"
+							autofocus="autofocus" th:field="*{descricao}"
+							th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid'" />
+
+					<label for="nome">Ano </label>
+				   <input type="text" class="form-control" id="ano" placeholder="Ano"
+							autofocus="autofocus" th:field="*{ano}"
+							th:classappend="${#fields.hasErrors('ano')} ? 'is-invalid'" />
+				</div>	
+        	</div>
+        	
+			 <div class="form-group col-md-4">   		 
+   			 <label for="turno">Turno</label>
+	                        <select id="turno" path= "turno"  required="required" class="form-control" th:field="*{turno}">
+	                            <option value="" >Selecione</option>
+	                            <option th:each="t: ${T(br.edu.ifpr.app.sae.model.Turno).values()}"
+	                             th:text="${t.name()}" th:value="${t.name()}" ></option>
+            </select>
+			 </div>	                     
+				
+			<div class="card">
+				<div class="card-header dynamic-update-rows">
+					Disciplinas
+
+					<button type="button" name="addRow"
+						class="btn btn-sm btn-success float-right"
+						data-dynamic-update-rows-url="/turma/addRow">
+						<i class="fas fa-plus"></i>
+					</button>
+
+				</div>
+				<div class="card-body">
+
+					<table class="table dynamic-update-rows" style="width: 100%">
+												<thead> 
+													<tr> 
+														
+														<th>    </th> 
+														<th>    </th>
+														<th>Disciplina</th> 
+														
+														<th>    </th>
+														<th>    </th> 
+														<th>Professor</th> 
+													</tr> 
+						 						</thead> 
+						<tbody id="dynamicTableContents">
+							<tr th:fragment="disciplinas"
+								th:each="disciplina,rowStat : ${turma.disciplinaList}">
+								<td th:text="${rowStat.count}">1</td>
+																
+								<td><input class="form-control form-control-sm"								 
+									th:field="${turma.disciplinaList[__${rowStat.index}__].descricao}"
+									th:errorclass="is-invalid" />
+									<div
+										th:if="${#fields.hasErrors('${turma.disciplinaList[__${rowStat.index}__].descricao}')}"
+										class="invalid-feedback"
+										th:errors="${turma.disciplinaList[__${rowStat.index}__].descricao}"></div>
+								</td>								
+					  			
+								<th:each="professor,rowStat : ${turma.professorList}">
+								<td th:text="${rowStat.count}">1<td>								
+							  	<td><input class="form-control form-control-sm"
+									th:field="${turma.professorList[__${rowStat.index}__].nome}"
+									th:errorclass="is-invalid" />
+									<div
+										th:if="${#fields.hasErrors('${turma.professorList[__${rowStat.index}__].nome}')}"
+										class="invalid-feedback"
+										th:errors="${turma.professorList[__${rowStat.index}__].nome}"></div>
+								</td>
+								
+								<td>
+									<div class="btn-group">
+										<button type="button" name="removeDynamicRow"
+											th:value="${rowStat.index}" class="btn btn-sm btn-danger"
+											data-dynamic-update-rows-url="/removeDisciplina">
+											<i class="fas fa-trash"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+
+			<button type="submit" class="btn btn-primary btn-block">Submeter formulário</button>
+			<hr />
+			<br />
+			<div class="row justify-content-center">
+				<!-- 						<h5 class="card-title">Disciplina Details</h5> -->
+				<div th:if="${errorMessage}"
+					class="alert alert-danger alert-dismissible fade show" role="alert">
+					<strong>Error:</strong> <span th:text="${errorMessage}">Error</span>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div th:if="${successMessage}"
+					class="alert alert-success alert-dismissible fade show"
+					role="alert">
+					<strong>Success:</strong> <span th:text="${successMessage}">Success</span>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span><a th:href="@{/list}"
+						class="btn btn-sm btn-primary ml-2 mr-2"><i
+							class="fas fa-list-ol"></i> Go to Person List</a></span>
+				</div>
+
+				<div id="summary"></div>
+			</div>
+		</form>
+
+
+	</div>
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery-validation/jquery.validate.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/script.js}"></script>
+	<script>
+		$(document).ready(function() {
+
+			$("#turmaDisciplinaForm").validate({focusCleanup: true, errorClass: "invalid",
+				  showErrors: function(errorMap, errorList) {
+					    $("#summary").html("Your form contains "
+					      + this.numberOfInvalids()
+					      + " errors, please fix them before submit.");
+					    this.defaultShowErrors();
+					  }
+					});
+
+			//$("input[name^='disciplinaList']").each(function() {
+			$("input[name$='descricao']").each(function() {
+				$(this).rules('add', {
+					required : true,
+					rangelength : [ 10, 40 ]
+				});
+			});
+			
+			$("select[name$='professor.nome']").each(function() {
+				$(this).rules('add', {
+					required : true
+				});
+			});
+			
+
+		});
+	</script>
+
+	</div>
+	
+	</main>
+	
+
+	<div th:replace="footer :: footer"></div>
+
+</body>
+</html>
