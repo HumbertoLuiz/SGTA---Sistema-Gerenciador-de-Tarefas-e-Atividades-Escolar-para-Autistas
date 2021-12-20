@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}" >
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="Content-Type" content="text/html;"/>
+	
+	<title>Sistema de AgendaEscolar - Cadastro de Servidor</title>
+</head>
+
+<body>
+	
+	<!-- Conteúdo -->
+	<div layout:fragment="content">
+		<form method="post">
+			<h3>Cadastro de Servidor</h3>
+			<div class="form-group">
+				<label for="labelMatriculaInput">Matricula:</label> 
+				<input class="form-control" type="number" value="" name="matricula"> 
+			</div>
+			<div class="form-group">
+				<label for="labelNomeInput">Nome:</label>
+				<input class="form-control" type="text" value="" name="nome"> 
+			</div>
+			
+			<h4>Telefone</h4>
+			
+			
+				<div class="col">
+					<label for="bairroInput">Telefone:</label> <input class="form-control"
+						type="text" value="" name="telefone">
+				</div>
+				<div class="col">
+					<label for="referenciaoInput">Celular:</label> <input
+						class="form-control" type="text" value="" name="celular">
+				</div>
+			
+			
+			
+			
+			<button class="btn btn-primary mb-2" type="submit">Salvar</button>
+			<br>
+		</form>
+	</div>
+	
+</body>
+</html>

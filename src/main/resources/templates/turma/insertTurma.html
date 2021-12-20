@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}" >
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="Content-Type" content="text/html"/>
+	
+	<title>Sistema Agenda - Cadastro de Turmas Escolares</title>
+</head>
+
+<body>
+	
+	<!-- Conteúdo -->
+	<div layout:fragment="content">
+	
+		<h3>Cadastro Turmass</h3>
+		
+		<form method="post">
+			<div class="form-group">
+				<label for="unidadeEscolarInput">Nome:</label> 
+				<input class="form-control" name="nome" type="text" value=""/>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="cnpjInput">CNPJ:</label> 
+					<input class="form-control" name="cnpj" type="text" value=""/>
+				</div>
+			</div>
+	
+			<button class="btn btn-primary mb-2" type="submit">Salvar</button>
+		</form>
+	</div>
+	
+</body>
+</html>

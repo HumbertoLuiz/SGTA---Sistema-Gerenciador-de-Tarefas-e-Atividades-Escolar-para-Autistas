@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}" >
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="Content-Type" content="text/html;"/>
+</head>
+
+<body>
+	<!-- Conteúdo -->	
+	<div layout:fragment="content">
+		<h3>Listar Cursos</h3>
+		
+		<table class="table table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nome</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="curso : ${cursos}">
+					<td th:text="${curso.id}"></td>
+					<!-- <td><a th:href="${(#mvc.url('EC#detalhesCurso').arg(0, curso.id)).build()}"><span th:text="${curso.curso}"></span></a></td> -->
+					<td th:text="${curso.curso}"></td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
