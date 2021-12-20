@@ -5,7 +5,7 @@ Aplicação Web para auxiliar no agendamento e organização de tarefas e ativid
 
 * Este é um projeto acadêmico para obtenção de conclusão da disciplina de projeto integrador 5o Período IFPR campus Foz do Iguaçu.
 
-### Foram construidos os seguintes objetivos neste projeto acadêmico:
+## Foram construidos os seguintes objetivos neste projeto acadêmico:
 
 * Construção do Back-End com utilização de Spring Boo e Rest API;
 * Construção da Interface Visual (Front-End) com Thymeleaf e Bootstrap;
@@ -14,7 +14,7 @@ Aplicação Web para auxiliar no agendamento e organização de tarefas e ativid
 * Gerenciamento das entidades através de CRUD e MVC;
 * Cadastros , Listas , Updates e Deletes.
 
-### Para executar o projeto, siga conforme descrito abaixo: 💡
+## Para executar o projeto, siga conforme descrito abaixo: 💡
 
 ```
   * Clonar este repositório
