@@ -10,7 +10,6 @@ Aplicação Web para auxiliar no agendamento e organização de tarefas e ativid
 * Construção do Back-End com utilização de Spring Boo e Rest API;
 * Construção da Interface Visual (Front-End) com Thymeleaf e Bootstrap;
 * Utilização do Banco de Dados MySQL para persistência de dados;
-* Utilização do container Docker para armazenamento da aplicação;
 * Gerenciamento das entidades através de CRUD e MVC;
 * Cadastros , Listas , Updates e Deletes.
 
