@@ -11,10 +11,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>br.com.nofrontier.sgetea</groupId>
-	<artifactId>nofrontier-sgetea</artifactId>
+	<groupId>br.com.xfrontier.sgetea</groupId>
+	<artifactId>xfrontier-sgetea</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>nofrontier-sgetea</name>
+	<name>xfrontier-sgetea</name>
 	<description>Project App SGE-TEA</description>
 	<url />
 
